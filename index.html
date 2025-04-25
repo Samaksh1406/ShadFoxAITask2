@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Selling Price Prediction</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.5.2/css/bootstrap.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(to right, #ece9e6, #ffffff);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card {
+      border: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      border-radius: 15px;
+    }
+    .card-header {
+      background-color: #007bff;
+      color: white;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      text-align: center;
+      font-size: 1.5rem;
+    }
+    .form-group label {
+      font-weight: 500;
+    }
+    button.btn-primary {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+    }
+    h3.mt-4 {
+      text-align: center;
+      color: #28a745;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Car Selling Price Prediction</div>
+          <div class="card-body">
+            <form method="POST" action="/predict">
+              <div class="form-group">
+                <label for="year">Year of Purchase</label>
+                <input type="number" class="form-control" id="year" name="year" required />
+              </div>
+              <div class="form-group">
+                <label for="present_price">Current Showroom Price (in lakhs)</label>
+                <input type="number" step="any" class="form-control" id="present_price" name="present_price" required />
+              </div>
+              <div class="form-group">
+                <label for="kms_driven">Kilometers Driven</label>
+                <input type="number" class="form-control" id="kms_driven" name="kms_driven" required />
+              </div>
+              <div class="form-group">
+                <label for="owner">Number of Previous Owners</label>
+                <input type="number" class="form-control" id="owner" name="owner" required />
+              </div>
+              <div class="form-group">
+                <label for="fuel_type">Fuel Type</label>
+                <select class="form-control" id="fuel_type" name="fuel_type" required>
+                  <option>Petrol</option>
+                  <option>Diesel</option>
+                  <option>CNG</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="seller_type">Seller Type</label>
+                <select class="form-control" id="seller_type" name="seller_type" required>
+                  <option>Dealer</option>
+                  <option>Individual</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="transmission">Transmission Type</label>
+                <select class="form-control" id="transmission" name="transmission" required>
+                  <option>Manual</option>
+                  <option>Automatic</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Predict Price</button>
+            </form>
+
+            {% if prediction_text %}
+              <h3 class="mt-4">{{ prediction_text }}</h3>
+            {% endif %}
+             {% if r2_score %}
+  <h4 class="mt-2 text-center">{{ r2_score }}</h4>
+{% endif %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
