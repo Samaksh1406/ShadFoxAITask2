@@ -1,4 +1,4 @@
-# ShadFoxAITask2
+# ShadowFoxAITask2
 # 🚀 ShadowFox Internship Tasks
 **Intern:** Samaksh Jain  
 **Domain:** AIML (Artificial Intelligence & Machine Learning)  
